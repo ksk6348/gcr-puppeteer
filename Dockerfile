@@ -30,12 +30,14 @@ ENV CHROME_BIN=/usr/bin/chromium-browser \
     CHROME_PATH=/usr/lib/chromium
 
 COPY ./package.json /app/package.json
+COPY ./package-lock.json /app/package-lock.json
 WORKDIR /app
 RUN npm install
 
 COPY . .
 RUN npm run compile
 ENV PORT 8080
+EXPOSE 8080
 
 # Add user so we don't need --no-sandbox.
 RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \ && mkdir -p /home/pptruser/Downloads /app \

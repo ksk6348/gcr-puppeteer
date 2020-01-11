@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer-core';
 
 export const runPuppeteer = async (req: any, res: any) => {
+  console.log('creating...')
   console.log(req.body)
 
   const browser = await puppeteer.launch({
@@ -21,6 +22,6 @@ export const runPuppeteer = async (req: any, res: any) => {
   const img: string = await page.screenshot({encoding: "base64"});
 
   browser.close();
-
+  console.log('created!!!')
   res.send({ img })
 };
